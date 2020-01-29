@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Grid } from './styles'
+import { filterProjects } from '../../helpers/filter'
+import { fetchProjects } from '../../helpers/fetchProjects'
 
+import { Context } from '../../Context'
 import { ProjectCard } from '../ProjectCard/ProjectCard'
 
-function fetchProjects () {
-  const [projects, setProjects] = useState([])
-
-  useEffect(function () {
-    window.fetch('https://atxk.com/milenio/api/projects/format/json')
-      .then(response => response.json())
-      .then(projects => {
-        setProjects(projects)
-      })
-  }, [])
-
-  return projects
-}
-
 export const GridOfProjects = () => {
-  const projects = fetchProjects()
+  const allProjects = fetchProjects()
 
   return (
-    <Grid>
+    <Context.Consumer>
       {
-        projects.map(project => <ProjectCard key={project.id} {...project} />)
+        ({ year, location, category }) => {
+          const projects = filterProjects(allProjects, year, location, category)
+
+          return (
+            <Grid>
+              {
+                projects.map(project => <ProjectCard key={project.id} {...project} />)
+              }
+            </Grid>
+          )
+        }
       }
-    </Grid>
+    </Context.Consumer>
   )
 }

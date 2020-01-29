@@ -36,6 +36,23 @@ export const GlobalStyles = createGlobalStyle`
   }
 `
 
-export const Home = styled.div`
+export const HomeStyle = styled.div`
   display: flex;
+  justify-content: flex-end;
+  padding: 3%;
+
+  .filters {
+    width: 30%;
+    position: fixed;
+    top: 0;
+    left: 0%;
+    height: 100vh;
+    padding-left: 3%;
+    padding-top: 3%;
+  }
+
+  .grid {
+    width: 70%;
+    margin-top: 9%
+  }
 `

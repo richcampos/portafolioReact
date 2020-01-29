@@ -1,19 +1,20 @@
 import React from 'react'
+import { Link, Image, Overlay, TextBar } from './styles'
 
 import DEFAULT_IMAGE from '../../assets/logoB.svg'
 
-export const ProjectCard = ({ photos, path = '#', name = '?' }) => {
+export const ProjectCard = ({ photos, id = '#', name = '?', year = '?' }) => {
   return (
-    <a to={path}>
-      <div className='overlay' />
+    <Link to={`/projects/${id}`}>
+      <Overlay className='overlay' />
       {
         photos.length > 0
-          ? <img src={photos[0].small640} />
-          : <img src={DEFAULT_IMAGE} />
+          ? <Image src={photos[0].small640} />
+          : <Image src={DEFAULT_IMAGE} />
       }
-      <div className='bg-gray'>
-        <p className='white'>{name}</p>
-      </div>
-    </a>
+      <TextBar className='bg-gray'>
+        <p className='white'>{name} | {year}</p>
+      </TextBar>
+    </Link>
   )
 }

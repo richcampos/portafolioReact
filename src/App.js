@@ -4,6 +4,7 @@ import { GlobalStyles } from './styles/GlobalStyles'
 
 import { NavBar } from './components/NavBar/NavBar'
 import { Home } from './pages/Home'
+import { DetailedProjects } from './pages/DetailedProjects'
 import { NotFound } from './pages/NotFound'
 
 export const App = () => {
@@ -13,6 +14,7 @@ export const App = () => {
       <Router>
         <NotFound default />
         <Home path='/' />
+        <DetailedProjects path='/projects/:id' />
       </Router>
       <NavBar />
     </div>
