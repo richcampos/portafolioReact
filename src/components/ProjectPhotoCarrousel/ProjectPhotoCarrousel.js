@@ -1,24 +1,38 @@
 import React from 'react'
 import { getProjectById } from '../../helpers/getProjectById'
-import DEFAULT_IMAGE from '../../assets/logoB.svg'
-import { Context } from '../../Context'
+import { getPhotos } from '../../helpers/getPhotos'
+import { Container, Image, ProjectData } from './styles'
+import Slider from 'react-slick'
 
-// const Carousel = require('react-responsive-carousel')
 export const ProjectPhotoCarrousel = ({ projects, id }) => {
+  const project = getProjectById(projects, id)
+  const photos = getPhotos(project, 5)
+  const settings = {
+    accessibility: false,
+    dots: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    infinite: false
+  }
   return (
-    <Context.Consumer>
-      {
-        () => {
-          const project = getProjectById(projects, id)
-          console.log(project.photos)
-
-          return (
-            !project.photos
-              ? <img src={DEFAULT_IMAGE} />
-              : project.photos.map(elem => <img key='10' src={elem.middle1280} />)
-          )
+    <Container>
+      <Slider {...settings}>
+        {
+          photos.map(elem => {
+            return (<div key='10'><Image backgroundImage={elem.middle1280} /></div>)
+          })
         }
-      }
-    </Context.Consumer>
+      </Slider>
+      <div />
+      <ProjectData>
+        <h4>{project.name}</h4>
+        <p>Superficie: {project.size}m<sup>2</sup></p>
+        <p>Arquitecto: {project.architect}</p>
+        <p>Project Manager: {project.pm}</p>
+        <p>Locación: {project.location}</p>
+        <p>Año: {project.year}</p>
+      </ProjectData>
+    </Container>
   )
 }
