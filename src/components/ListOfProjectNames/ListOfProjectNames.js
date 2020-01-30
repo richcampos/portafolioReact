@@ -1,9 +1,11 @@
 import React from 'react'
 import { filterProjects } from '../../helpers/filter'
+import { Container } from './styles'
+import { Link } from '@reach/router'
 
 import { Context } from '../../Context'
 
-export const ListOfProjectNames = ({ projects }) => {
+export const ListOfProjectNames = ({ projects, id }) => {
   return (
     <Context.Consumer>
       {
@@ -11,11 +13,17 @@ export const ListOfProjectNames = ({ projects }) => {
           const allProjects = filterProjects(projects, year, location, category)
 
           return (
-            <div>
+            <Container>
               {
-                allProjects.map(project => <p key={project.id}>{project.name}</p>)
+                allProjects.map(project => {
+                  return (
+                    <Link active={id} to={`/projects/${project.id}`} key={project.id}>
+                      {project.name}
+                    </Link>
+                  )
+                })
               }
-            </div>
+            </Container>
           )
         }
       }

@@ -18,7 +18,7 @@ export const Nav = styled.div`
   a {
     padding-left: 5%;
     color: #fff;
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: bold;
     text-decoration: none;
 
@@ -34,9 +34,13 @@ export const HomeLink = styled(styledLink)`
   }
 `
 
+export const SocialIcons = styled.a`
+  margin-left: 6%;
+`
+
 export const SocialMedia = styled.div`
-  width: 10%;
+  width: 13%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `

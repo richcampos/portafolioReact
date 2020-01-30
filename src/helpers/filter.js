@@ -9,7 +9,7 @@ export function filterProjects (projects, year, location, category) {
     })
   } else {
     filteredProjects = projects.filter(it => {
-      return it.year.toLowerCase().includes(location)
+      return it.category.toLowerCase().includes(location)
     })
   }
 
@@ -21,7 +21,7 @@ export function filterProjects (projects, year, location, category) {
 
   if (location) {
     filteredProjects = filteredProjects.filter(it => {
-      return it.year.toLowerCase().includes(location)
+      return it.location.toLowerCase().includes(location)
     })
   }
 
