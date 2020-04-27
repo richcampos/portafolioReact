@@ -6,6 +6,7 @@ const Provider = ({ children }) => {
   const [year, setYear] = useState()
   const [location, setLocation] = useState()
   const [category, setCategory] = useState('destacados')
+  const [area, setArea] = useState()
 
   const filters = {
     year,
@@ -19,6 +20,10 @@ const Provider = ({ children }) => {
     category,
     updateCategory: value => {
       setCategory(value)
+    },
+    area,
+    updateArea: value => {
+      setArea(value)
     }
   }
 

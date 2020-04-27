@@ -2,7 +2,7 @@ import React from 'react'
 import { FaFacebookF, FaLinkedin, FaInstagram } from 'react-icons/fa'
 import { Nav, HomeLink, SocialMedia, SocialIcons } from './styles.js'
 import { IconContext } from 'react-icons'
-import Logo from '../../assets/logo.svg'
+import Logo from '../../assets/images/logo.svg'
 
 export const NavBar = () => {
   return (

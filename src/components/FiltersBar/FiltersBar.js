@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
-import { Title, Form, Select } from './styles'
+import React, { useContext, useState } from 'react'
+import { Title, Form, Select, StyledSlider } from './styles'
 
 import { Context } from '../../Context'
 
 export const FiltersBar = () => {
+  const [state, setState] = useState({ x: 0, y: 33000 })
   const { year, location, category, updateYear, updateLocation, updateCategory } = useContext(Context)
 
   const onChangeYear = (event) => {
@@ -18,13 +19,17 @@ export const FiltersBar = () => {
     updateLocation(event.target.value)
   }
 
+  const onChangeArea = (event) => {
+    updateArea(event.target.value)
+  }
+
   return (
     <div>
       <Title>portafolio</Title>
       <Form>
         <label>Año</label>
         <Select onChange={onChangeYear} name='year' value={year}>
-          <option value=''>--</option>
+          <option value=''>Todos los años</option>
           <option value='2019'>2019</option>
           <option value='2018'>2018</option>
           <option value='2017'>2017</option>
@@ -35,10 +40,13 @@ export const FiltersBar = () => {
           <option value='2012'>2012</option>
           <option value='2011'>2011</option>
           <option value='2010'>2010</option>
+          <option value='2010'>2009</option>
+          <option value='2010'>2008</option>
+          <option value='2010'>2007</option>
         </Select>
         <label>Locación</label>
         <Select onChange={onChangeLocation} name='location' value={location}>
-          <option value=''>--</option>
+          <option value='--'>Todas las locaciones</option>
           <option value='aguascalientes'>Aguascalientes</option>
           <option value='bogotá'>Bogotá</option>
           <option value='cali'>Cali</option>
@@ -52,17 +60,30 @@ export const FiltersBar = () => {
           <option value='san luis potosí'>San Luis Potosí</option>
           <option value='tijuana'>Tijuana</option>
         </Select>
+        <label>Superficie</label>
+        {/* <StyledSlider
+          className='horizontal-slider'
+          thumbClassName='thumb'
+          trackClassName='track'
+          max={33000}
+          defaultValue={[0, 33000]}
+          ariaLabel={['Lower thumb', 'Upper thumb']}
+          ariaValuetext={state => `Thumb value ${state.valueNow}`}
+          renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+          pearling
+          minDistance={10000}
+        /> */}
+        <StyledSlider />
         <label>Categoría</label>
         <Select onChange={onChangeCategory} name='category' value={category}>
-          <option value=''>--</option>
-          <option value='all'>Todo</option>
+          <option value='all'>Todas las categorías</option>
           <option value='destacados'>Destacados</option>
           <option value='abogados'>Abogados</option>
           <option value='agricultura'>Agricultura</option>
           <option value='alimentos'>Alimentos</option>
           <option value='automotriz'>Automotriz</option>
           <option value='banco'>Banco</option>
-          <option value='bebidas-alcoholicas'>Bebidas Alcohólicas</option>
+          <option value='bebidas alcohólicas'>Bebidas Alcohólicas</option>
           <option value='bienes-cotidianos'>Bienes Cotidianos</option>
           <option value='bienes-de-consumo'>Bienes de Consumo</option>
           <option value='bienes-de-produccion'>Bienes de Producción</option>

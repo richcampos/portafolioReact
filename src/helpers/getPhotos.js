@@ -1,4 +1,4 @@
-import DEFAULT_IMAGE from '../assets/logo.svg'
+import DEFAULT_IMAGE from '../assets/images/logo.svg'
 
 export function getPhotos (project, numberOfPhotos) {
   let photos = [DEFAULT_IMAGE]

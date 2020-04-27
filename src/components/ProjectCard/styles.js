@@ -4,19 +4,27 @@ import { Link as LinkRouter } from '@reach/router'
 export const Link = styled(LinkRouter)`
   position: relative;
   overflow: hidden;
-  height: 250px;
+  height: 200px;
+  background-image: url(${props => props.image});
+  background-size: cover;
+  background-position: center;
+  transition: filter 1.2s;
+  filter: grayscale(100%);
+
+  &.default {
+    background-size: unset;
+    background-repeat: no-repeat;
+  }
 
   &:hover {
+    filter: none;
+
     .bg-gray {
       transform: translateX(0)
     }
 
     .overlay {
       transform: translateX(-100%)
-    }
-
-    img {
-      filter: none;
     }
   }
 `
@@ -43,16 +51,4 @@ export const Overlay = styled.div`
   right: 0;
   z-index: 200;
   background-color: rgba(29, 29, 27, 0.7)
-`
-
-export const Image = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  filter: grayscale(100%);
-  transition: all 1.2s;
-
-  @media(max-width: 960px) {
-    filter: none;
-  }
 `
